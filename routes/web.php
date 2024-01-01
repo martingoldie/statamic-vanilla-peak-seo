@@ -10,7 +10,7 @@ $useSocialImageGeneration = (bool)GlobalSet::findByHandle('seo')?->inDefaultSite
 
 // The Sitemap Index route for listing sitemaps of all (multi)sites.
 if ($useSitemap) {
-    Route::statamic('/sitemaps.xml', 'statamic-peak-seo::sitemap/sitemaps', [
+    Route::statamic('/sitemaps.xml', 'statamic-vanillia-peak-seo::sitemap/sitemaps', [
         'layout' => null,
         'content_type' => 'application/xml'
     ]);
@@ -23,7 +23,7 @@ if ($useSitemap || $useSocialImageGeneration) {
 
         // The Sitemap route.
         if ($useSitemap) {
-            Route::statamic(URL::tidy($relativeSiteUrl . '/sitemap.xml'), 'statamic-peak-seo::sitemap/sitemap', [
+            Route::statamic(URL::tidy($relativeSiteUrl . '/sitemap.xml'), 'statamic-vanillia-peak-seo::sitemap/sitemap', [
                 'layout' => null,
                 'content_type' => 'application/xml'
             ]);
@@ -31,7 +31,7 @@ if ($useSitemap || $useSocialImageGeneration) {
 
         // The Social Image route to generate social images.
         if ($useSocialImageGeneration) {
-            Route::statamic(URL::tidy($relativeSiteUrl . '/social-images/{id}'), 'statamic-peak-seo::social_images', [
+            Route::statamic(URL::tidy($relativeSiteUrl . '/social-images/{id}'), 'statamic-vanillia-peak-seo::social_images', [
                 'layout' => null,
             ]);
         }

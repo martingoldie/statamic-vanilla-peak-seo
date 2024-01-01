@@ -3,8 +3,8 @@
 # Statamic Peak SEO
 
 This is an addon for [Statamic Peak](https://github.com/studio1902/statamic-peak) that contains a full professional SEO toolset.
-
 Maintaining Peak demands a lot of Rob's time and it probably saves you a lot. Sponsoring Rob makes it much easier for him to maintain this project and keep improving it. [Sponsor Peak](https://github.com/sponsors/studio1902).
+
 
 [Read the docs](https://peak.1902.studio).
 
