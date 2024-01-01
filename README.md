@@ -13,7 +13,7 @@ Maintaining Peak demands a lot of my time and it probably saves you a lot. Your 
 This addon is automatically installed when you install Peak via the Statamic CLI. If you want to install this addon manually on on older Peak install run:
 
 ``` bash
-composer require studio1902/statamic-peak-seo
+composer require jaygeorge/statamic-vanilla-peak-seo
 ```
 
 You will have to manually link all SEO fieldsets to this ones in this addon.

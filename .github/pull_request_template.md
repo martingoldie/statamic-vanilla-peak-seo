@@ -1,4 +1,4 @@
-Make sure you [discussed your idea](https://github.com/studio1902/statamic-peak-seo/discussions) before doing a PR.
+Make sure you [discussed your idea](https://github.com/jaygeorge/statamic-vanilla-peak-seo/discussions) before doing a PR.
 
 Fixes # .
 

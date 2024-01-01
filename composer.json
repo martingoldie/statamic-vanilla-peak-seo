@@ -1,5 +1,5 @@
 {
-    "name": "studio1902/statamic-peak-seo",
+    "name": "jaygeorge/statamic-vanilla-peak-seo",
     "autoload": {
         "psr-4": {
             "Studio1902\\PeakSeo\\": "src"
