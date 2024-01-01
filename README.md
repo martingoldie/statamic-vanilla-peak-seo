@@ -4,7 +4,7 @@
 
 This is an addon for [Statamic Peak](https://github.com/studio1902/statamic-peak) that contains a full professional SEO toolset.
 
-Maintaining Peak demands a lot of my time and it probably saves you a lot. Your sponsoring would mean a great deal to me as it makes it much easier for me to maintain this project and keep improving it. [Sponsor me](https://github.com/sponsors/studio1902).
+Maintaining Peak demands a lot of Rob's time and it probably saves you a lot. Sponsoring Rob makes it much easier for him to maintain this project and keep improving it. [Sponsor Peak](https://github.com/sponsors/studio1902).
 
 [Read the docs](https://peak.1902.studio).
 
@@ -19,9 +19,11 @@ composer require jaygeorge/statamic-vanilla-peak-seo
 You will have to manually link all SEO fieldsets to this ones in this addon.
 
 ## Contributing
+
 Contributions and discussions are always welcome, no matter how large or small. Treat each other with respect. Read the [Code of Conduct](https://github.com/studio1902/statamic-peak-commands/blob/main/.github/CODE_OF_CONDUCT.md).
 
 Read more about [how you can contribute](https://peak.1902.studio/other/contributing.html) here.
 
 ## License
+
 Statamic Peak is licensed under the GNU General Public License v3.0. Please see [License File](LICENSE.md) for more information. Statamic itself is commercial software and has its' own license.
