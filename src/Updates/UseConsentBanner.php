@@ -29,21 +29,21 @@ class UseConsentBanner extends UpdateScript
         }
 
         // Update published SEO view.
-        $view = base_path("resources/views/vendor/statamic-peak-seo/snippets/_seo.antlers.html");
+        $view = base_path("resources/views/vendor/statamic-vanilla-peak-seo/snippets/_seo.antlers.html");
 
         if (File::exists($view)) {
             $contents = Str::of(File::get($view))
                 ->replace('seo:use_cookie_banner', 'seo:use_consent_banner')
-                ->replace('{{ partial:statamic-peak-seo::components/cookie_banner }}', '{{ partial:statamic-peak-seo::components/consent_banner }}')
+                ->replace('{{ partial:statamic-vanilla-peak-seo::components/cookie_banner }}', '{{ partial:statamic-vanilla-peak-seo::components/consent_banner }}')
                 ->replace('{{ trans:strings.cookie_', '{{ trans:strings.consent_');
 
             File::put($view, $contents);
 
-            $this->console()->info('Renamed `seo:use_cookie_banner` to `seo:use_consent_banner` and `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-peak-seo/snippets/_seo.antlers.html`.');
+            $this->console()->info('Renamed `seo:use_cookie_banner` to `seo:use_consent_banner` and `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-vanilla-peak-seo/snippets/_seo.antlers.html`.');
         }
 
         // Update published cookie banner view.
-        $view = base_path("resources/views/vendor/statamic-peak-seo/components/_cookie_banner.antlers.html");
+        $view = base_path("resources/views/vendor/statamic-vanilla-peak-seo/components/_cookie_banner.antlers.html");
 
         if (File::exists($view)) {
             $contents = Str::of(File::get($view))
@@ -54,9 +54,9 @@ class UseConsentBanner extends UpdateScript
 
             File::put($view, $contents);
 
-            File::move("resources/views/vendor/statamic-peak-seo/components/_cookie_banner.antlers.html", "resources/views/vendor/statamic-peak-seo/components/_consent_banner.antlers.html");
+            File::move("resources/views/vendor/statamic-vanilla-peak-seo/components/_cookie_banner.antlers.html", "resources/views/vendor/statamic-vanilla-peak-seo/components/_consent_banner.antlers.html");
 
-            $this->console()->info('Renamed `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-peak-seo/components/_cookie_banner.antlers.html` and rename the file to `_cookie_banner.antlers.html`.');
+            $this->console()->info('Renamed `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-vanilla-peak-seo/components/_cookie_banner.antlers.html` and rename the file to `_cookie_banner.antlers.html`.');
         }
 
         // Update string files.
@@ -97,7 +97,7 @@ class UseConsentBanner extends UpdateScript
 
         // Update video component.
         $view = base_path("resources/views/components/_video.antlers.html");
-        $published_banner = base_path("resources/views/vendor/statamic-peak-seo/components/_cookie_banner.antlers.html");
+        $published_banner = base_path("resources/views/vendor/statamic-vanilla-peak-seo/components/_cookie_banner.antlers.html");
 
         if (File::exists($view)) {
             $contents = Str::of(File::get($view))
