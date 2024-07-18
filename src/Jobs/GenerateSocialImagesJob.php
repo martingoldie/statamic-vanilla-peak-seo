@@ -3,18 +3,17 @@
 namespace Studio1902\PeakSeo\Jobs;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
 use Statamic\Facades\AssetContainer;
+use Statamic\Globals\GlobalSet;
 
-class GenerateSocialImagesJob implements ShouldQueue
-{
+class GenerateSocialImagesJob implements ShouldBeUnique, ShouldQueue {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $item;
@@ -24,19 +23,8 @@ class GenerateSocialImagesJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($item)
-    {
+    public function __construct($item) {
         $this->item = $item;
-    }
-
-    /**
-     * Middleware to prevent jobs from overlapping.
-     *
-     * @return void
-     */
-    public function middleware(): array
-    {
-        return [(new WithoutOverlapping('generate-social-images'))->expireAfter(60)];
     }
 
     /**
@@ -44,8 +32,7 @@ class GenerateSocialImagesJob implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
-    {
+    public function handle() {
         $container = AssetContainer::find('social_images');
         $disk = $container->disk();
 
@@ -78,18 +65,17 @@ class GenerateSocialImagesJob implements ShouldQueue
         }
         $container->makeAsset($file)->save();
         $this->item->set('og_image', $file)->save();
-
-        // Repeat for other sizes.
-
-        Artisan::call('cache:clear');
     }
 
-    protected function setupBrowsershot(): Browsershot
-    {
+    protected function setupBrowsershot(): Browsershot {
         $id = $this->item->id();
         $absolute_url = $this->item->site()->absoluteUrl();
 
-        $browsershot = Browsershot::url("{$absolute_url}/social-images/{$id}");
+        if (GlobalSet::findByHandle('seo')->inDefaultSite()->get('use_no_sandbox_for_social_image_generation')) {
+            $browsershot = Browsershot::url("{$absolute_url}/social-images/{$id}")->noSandbox();
+        } else
+            $browsershot = Browsershot::url("{$absolute_url}/social-images/{$id}");
+
 
         if ($nodeBinary = config('statamic-vanilla-peak-seo.social_image.node_binary')) {
             $browsershot->setNodeBinary($nodeBinary);
@@ -100,5 +86,10 @@ class GenerateSocialImagesJob implements ShouldQueue
         }
 
         return $browsershot;
+    }
+
+    public function uniqueId(): string
+    {
+        return $this->item->id();
     }
 }

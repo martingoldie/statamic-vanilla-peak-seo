@@ -1,5 +1,90 @@
 # Changelog
 
+## v8.15.3 (2024-07-06)
+
+### What's improved
+- Make `GenerateSocialImagesJob` a unique job to prevent redundant tasks. 86399dd3 by @robdekort
+
+## v8.15.2 (2024-07-04)
+
+### What's changed
+- Remove withoutOverlapping middleware when generating OG images as it causes failed jobs. Put it on a single process queue if you want to limit resources being used. c24300e0 by @robdekort
+
+## v8.15.1 (2024-07-03)
+
+### What's fixed
+- Fix env config names for new config options. 106dbb8d by @robdekort
+
+## v8.15.0 (2024-07-03)
+
+### What's new
+- Added config options for social images `tries` and `release_after` properties to prevent failed jobs when you run queues with multiple workers. 78690c81 by @robdekort
+
+## v8.14.0 (2024-06-03)
+
+### What's new
+- Added no_Sandbox() option when generating Social Images. #44 by @mbootsman
+
+## v8.13.2 (2024-05-14)
+
+### What's fixed
+- Add social image route for default site. 53323541 by @robdekort
+
+## v8.13.1 (2024-05-02)
+
+### What's fixed
+- Simplify routing so they can be cached. 7108d352 by @robdekort
+
+## v8.13.0 (2024-05-02)
+
+### What's new
+- Add support for the self hosted Matomo Tag Manager. 3e6456ff by @robdekort
+
+## v8.12.0 (2024-05-02)
+
+### What's improved
+- Use closures for routes for better performance and multisite in Statamic v5. 359e95bb by @jesseleite and @jasonvarga
+
+## v8.11.0 (2024-04-19)
+
+### What's new
+- Support Statamic v5. #43 by @robdekort
+
+## v8.10.0 (2024-04-03)
+
+### What's improved
+- Strip script tags from inline scripts when using custom scripts. 65cf6102 by @robdekort
+
+## v8.9.0 (2024-03-21)
+
+### What's new
+- The ability to list services used (per consent category) in the consent banner. 7053062c by @robdekort
+
+## v8.3.1 (2024-03-20)
+
+### What's fixed
+- Fix broken cookie notice links in consent banner. 50e89552 by @robdekort
+
+## v8.3.0 (2024-03-12)
+
+### What's new
+- Add a Reject All button to the Consent Banner. 46c35190 by @robdekort
+
+## v8.2.1 (2024-03-06)
+
+### What's fixed
+- An issue when migrating to the Eloquent driver. b35d91cf by @robdekort
+
+## v8.2.0 (2024-02-14)
+
+### What's improved
+- Filter out entries without a permalink from the sitemap. 7a7ec41f by @robdekort
+
+## v8.1.1 (2024-02-09)
+
+### What's fixed
+- A faulty condition in the SEO snippet. 1fbe159c by @robdekort
+
 ## v8.1.0 (2024-01-26)
 
 ### What's new

@@ -6,7 +6,7 @@
 {{ unless seo:use_social_image_generation }}
     {{ 404 }}
 {{ else }}
-    <!-- statamic-peak-seo::social_images.antlers.html -->
+    <!-- statamic-vanilla-peak-seo::social_images.antlers.html -->
     <!doctype html>
     <html class="h-full">
         <head>
@@ -24,11 +24,11 @@
             {{# The OG template. #}}
             <div>
                 <h2 class="mb-4 text-xs text-neutral font-bold uppercase tracking-widest">OG</h2>
-                {{ partial:statamic-peak-seo::components/social_image selector="og" style="width: 1200px; height: 630px" }}
+                {{ partial:statamic-vanilla-peak-seo::components/social_image selector="og" style="width: 1200px; height: 630px" }}
             </div>
 
             {{# Repeat for future OG sizes. RIP Twitter. #}}
         </body>
     </html>
-    <!-- End: statamic-peak-seo::social_images.antlers.html -->
+    <!-- End: statamic-vanilla-peak-seo::social_images.antlers.html -->
 {{ /unless }}
