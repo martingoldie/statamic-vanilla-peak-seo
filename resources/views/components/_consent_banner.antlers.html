@@ -20,9 +20,9 @@
     <p><strong>
         {{ trans:strings.consent_explanation }}
         {{ if configuration:cookie_notice_type == 'entry' }}
-            <a href="{{ configuration:consent_notice_entry:url }}">{{ trans:strings.consent_learn_more }}</a>
+            <a href="{{ configuration:cookie_notice_entry:url }}">{{ trans:strings.consent_learn_more }}</a>
         {{ elseif configuration:cookie_notice_type == 'pdf' }}
-            <a href="{{ configuration:consent_notice_asset }}" target="_blank">{{ trans:strings.consent_learn_more }}</a>
+            <a href="{{ configuration:cookie_notice_asset }}" target="_blank">{{ trans:strings.consent_learn_more }}</a>
         {{ /if }}
     </strong></p>
 
@@ -42,6 +42,16 @@
                     <span x-html="type.explanation"></span>
                 </span>
             </label>
+            <template x-if="type.services">
+                <div x-data="{ expanded: false }" class="stack-1 ml-6 text-xs">
+                    <button @click="expanded = !expanded" class="inline underline text-primary">{{ trans:strings.consent_more_info }}</button>
+                    <ul x-show="expanded" x-collapse class="list-disc list-inside">
+                        <template x-for="service in type.services">
+                            <li x-text="service"></li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
         </template>
     </div>
 
@@ -53,6 +63,9 @@
         {{# Save selected options. #}}
         <button @click="$store.consentBanner.saveConsent()" type="button" class="c-btn c-btn--s c-btn--2">
             {{ trans:strings.consent_accept_selected }}
+        </button>
+        <button @click="$store.consentBanner.rejectAll()" type="button" classclass="c-btn c-btn--s c-btn--2">
+            {{ trans:strings.consent_reject_all }}
         </button>
     </div>
 
