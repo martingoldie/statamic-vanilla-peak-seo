@@ -9,21 +9,22 @@
     x-show="!$store.consentBanner.getConsent()"
     x-transition
     class="
-        fixed z-50 inset-x-[1rem] bottom-[1rem] md:bottom-[2rem] max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-4rem)] md:w-[23rem] flex flex-col stack-2 p-6 bg-white border border-neutral/10 rounded-lg shadow-xl overflow-auto overscroll-contain
-        {{ seo:display_style == 'left' ?= 'md:right-auto md:left-[2rem]' }}
-        {{ seo:display_style == 'right' ?= 'md:left-auto md:right-[2rem]' }}
+        c-consent-popup
+        {{ seo:display_style == 'left' ?= '' }}
+        {{ seo:display_style == 'right' ?= 'c-consent-popup--r' }}
     "
     x-cloak
 >
-    <h2 class="text-2xl font-bold">{{ trans:strings.consent_title }}</h2>
-    <p class="font-bold text-neutral">
+    <h2>{{ trans:strings.consent_title }}</h2>
+
+    <p><strong>
         {{ trans:strings.consent_explanation }}
         {{ if configuration:cookie_notice_type == 'entry' }}
-            <a class="underline rounded hover:text-primary" href="{{ configuration:cookie_notice_entry:url }}">{{ trans:strings.consent_learn_more }}</a>
+            <a href="{{ configuration:cookie_notice_entry:url }}">{{ trans:strings.consent_learn_more }}</a>
         {{ elseif configuration:cookie_notice_type == 'pdf' }}
-            <a class="underline rounded hover:text-primary" href="{{ configuration:cookie_notice_asset }}" target="_blank">{{ trans:strings.consent_learn_more }}</a>
+            <a href="{{ configuration:cookie_notice_asset }}" target="_blank">{{ trans:strings.consent_learn_more }}</a>
         {{ /if }}
-    </p>
+    </strong></p>
 
     <div class="stack-space-4 flex flex-col gap-3">
         <template x-for="type in $store.consentBanner.getConsentTypes()">
