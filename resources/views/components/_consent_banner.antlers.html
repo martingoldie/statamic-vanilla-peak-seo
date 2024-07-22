@@ -26,7 +26,7 @@
         {{ /if }}
     </strong></p>
 
-    <div class="stack-space-4 flex flex-col gap-3">
+    <div>
         <template x-for="type in $store.consentBanner.getConsentTypes()">
             <div class="stack-1">
                 <label class="inline-flex">
@@ -58,16 +58,16 @@
         </template>
     </div>
 
-    <div class="stack-space-4 flex flex-wrap md:justify-between gap-2">
-        <button @click="$store.consentBanner.acceptAll()" type="button" class="px-2 py-2 rounded text-sm font-bold bg-primary text-white outline-primary">
+    <div class="o-hero-buttons o-hero-buttons--left">
+        <button @click="$store.consentBanner.acceptAll()" type="button" class="c-btn c-btn--s c-btn--1">
             {{ trans:strings.consent_accept_all }}
         </button>
 
-        <button @click="$store.consentBanner.saveConsent()" type="button" class="px-2 py-2 rounded text-sm font-bold bg-neutral/10 text-neutral">
+        <button @click="$store.consentBanner.saveConsent()" type="button" class="c-btn c-btn--s c-btn--1">
             {{ trans:strings.consent_accept_selected }}
         </button>
 
-        <button @click="$store.consentBanner.rejectAll()" type="button" class="px-2 py-2 rounded text-sm font-bold bg-neutral/10 text-neutral">
+        <button @click="$store.consentBanner.rejectAll()" type="button" class="c-btn c-btn--s c-btn--2">
             {{ trans:strings.consent_reject_all }}
         </button>
     </div>
