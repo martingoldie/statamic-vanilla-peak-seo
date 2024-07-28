@@ -1,6 +1,6 @@
 <?php
 
-namespace Studio1902\PeakSeo\Jobs;
+namespace Goldie\PeakSeo\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;

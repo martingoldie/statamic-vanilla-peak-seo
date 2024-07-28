@@ -1,22 +1,25 @@
 {
-    "name": "jaygeorge/statamic-vanilla-peak-seo",
+    "name": "martingoldie/statamic-vanilla-peak-seo",
     "autoload": {
         "psr-4": {
-            "Studio1902\\PeakSeo\\": "src"
+            "Goldie\\PeakSeo\\": "src"
         }
     },
     "extra": {
         "statamic": {
-            "name": "Statamic Peak SEO",
-            "description": "Statamic Peak SEO addon"
+            "name": "Statamic Vanilla Peak SEO",
+            "description": "Statamic Vanilla Peak SEO addon"
         },
         "laravel": {
             "providers": [
-                "Studio1902\\PeakSeo\\ServiceProvider"
+                "Goldie\\PeakSeo\\ServiceProvider"
             ]
         }
     },
     "require": {
         "statamic/cms": "^4.0 || ^5.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     }
 }

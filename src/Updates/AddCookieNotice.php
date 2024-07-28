@@ -1,6 +1,6 @@
 <?php
 
-namespace Studio1902\PeakSeo\Updates;
+namespace Goldie\PeakSeo\Updates;
 
 use Statamic\Facades\GlobalSet;
 use Statamic\UpdateScripts\UpdateScript;

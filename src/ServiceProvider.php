@@ -1,9 +1,9 @@
 <?php
 
-namespace Studio1902\PeakSeo;
+namespace Goldie\PeakSeo;
 
 use Statamic\Providers\AddonServiceProvider;
-use Studio1902\PeakSeo\Actions\GenerateSocialImages;
+use Goldie\PeakSeo\Actions\GenerateSocialImages;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -16,12 +16,12 @@ class ServiceProvider extends AddonServiceProvider
     ];
 
     protected $updateScripts = [
-        \Studio1902\PeakSeo\Updates\UpdateGlobalRenameWhatToAdd::class,
-        \Studio1902\PeakSeo\Updates\LayoutUpdateSectionToStack::class,
-        \Studio1902\PeakSeo\Updates\AddCookieNotice::class,
-        \Studio1902\PeakSeo\Updates\UpdatePrivacyAndCookieGlobalInstructions::class,
-        \Studio1902\PeakSeo\Updates\UseConsentBanner::class,
-        \Studio1902\PeakSeo\Updates\AddRejectAll::class,
+        \Goldie\PeakSeo\Updates\UpdateGlobalRenameWhatToAdd::class,
+        \Goldie\PeakSeo\Updates\LayoutUpdateSectionToStack::class,
+        \Goldie\PeakSeo\Updates\AddCookieNotice::class,
+        \Goldie\PeakSeo\Updates\UpdatePrivacyAndCookieGlobalInstructions::class,
+        \Goldie\PeakSeo\Updates\UseConsentBanner::class,
+        \Goldie\PeakSeo\Updates\AddRejectAll::class,
     ];
 
     public function bootAddon()

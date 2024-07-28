@@ -1,11 +1,11 @@
 <?php
 
-namespace Studio1902\PeakSeo\Actions;
+namespace Goldie\PeakSeo\Actions;
 
 use Statamic\Actions\Action;
 use Statamic\Contracts\Entries\Entry as EntryInstance;
 use Statamic\Globals\GlobalSet;
-use Studio1902\PeakSeo\Jobs\GenerateSocialImagesJob;
+use Goldie\PeakSeo\Jobs\GenerateSocialImagesJob;
 
 class GenerateSocialImages extends Action
 {

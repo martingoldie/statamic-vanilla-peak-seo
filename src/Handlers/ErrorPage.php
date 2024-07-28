@@ -1,6 +1,6 @@
 <?php
 
-namespace Studio1902\PeakSeo\Handlers;
+namespace Goldie\PeakSeo\Handlers;
 
 use Illuminate\Support\Facades\View;
 use Statamic\Facades\GlobalSet;
