@@ -6,12 +6,12 @@
 <!-- statamic-vanilla-peak-seo::snippets/_seo.antlers.html -->
 {{# Page title #}}
 <title>
-    {{ seperator = seo:title_separator ?? " &#124; " }}
-    {{ site_name = seo:site_name ?? config:app:name }}
+    {{ seperator = seogoldie:title_separator ?? " &#124; " }}
+    {{ site_name = seogoldie:site_name ?? config:app:name }}
     {{ if seo_title }}
         {{ seo_title }}
-    {{ elseif seo:change_page_title | where('collection', collection) }}
-        {{ seo:change_page_title | where('collection', collection) }}
+    {{ elseif seogoldie:change_page_title | where('collection', collection) }}
+        {{ seogoldie:change_page_title | where('collection', collection) }}
             {{ if manipulate_title == 'collection_title' }}
                 {{ title }} {{ seperator }} {{ collection:title }} {{ seperator }} {{ site_name }}
             {{ elseif manipulate_title == 'custom_text' }}
@@ -19,7 +19,7 @@
             {{ elseif manipulate_title == 'replace_title' }}
                 {{ custom_text }}
             {{ /if }}
-        {{ /seo:change_page_title }}
+        {{ /seogoldie:change_page_title }}
     {{ else }}
         {{ yield:seo_title }}{{ title }} {{ seperator }} {{ site_name }}
     {{ /if }}
@@ -28,15 +28,15 @@
 {{# Page description #}}
 {{ if seo_description }}
     <meta name="description" content="{{ seo_description | strip_tags | entities | trim }}">
-{{ elseif seo:collection_defaults }}
+{{ elseif seogoldie:collection_defaults }}
     <meta name="description" content="{{ partial:statamic-vanilla-peak-seo::snippets/fallback_description }}">
 {{ /if }}
 
 {{# No index and no follow #}}
 {{ if
-    (environment == 'local' && !seo:noindex_local) or
-    (environment == 'staging' && !seo:noindex_staging) or
-    (environment == 'production' && !seo:noindex_production)
+    (environment == 'local' && !seogoldie:noindex_local) or
+    (environment == 'staging' && !seogoldie:noindex_staging) or
+    (environment == 'production' && !seogoldie:noindex_production)
 }}
    {{ if seo_noindex && seo_nofollow }}
        <meta name="robots" content="noindex, nofollow">
@@ -50,7 +50,7 @@
 {{ /if }}
 
 {{# hreflang tags #}}
-{{ if seo:hreflang_auto }}
+{{ if seogoldie:hreflang_auto }}
     {{ if not seo_noindex and seo_canonical_type == 'entry' and current_full_url === permalink }}
         {{ locales all="false" }}
             <link rel="alternate" hreflang="{{ locale:full | replace('_','-') }}" href="{{ permalink }}">
@@ -73,25 +73,25 @@
 {{ yield:pagination }}
 
 {{# Knowledge graph JSON-ld #}}
-{{ if seo:json_ld_type && seo:json_ld_type != 'none' }}
+{{ if seogoldie:json_ld_type && seogoldie:json_ld_type != 'none' }}
    <script type="application/ld+json" id="schema">
-       {{ if seo:json_ld_type == 'organization'  }}
+       {{ if seogoldie:json_ld_type == 'organization'  }}
            {
                "@context": "http://schema.org",
                "@type": "Organization",
-               "name": "{{ seo:organization_name }}",
-               "url": "{{ config:app:url }}{{ homepage }}"{{ if seo:organization_logo }},
-               "logo": "{{ config:app:url }}{{ glide:seo:organization_logo width='336' height='336' fit='fill' }}"{{ /if }}
+               "name": "{{ seogoldie:organization_name }}",
+               "url": "{{ config:app:url }}{{ homepage }}"{{ if seogoldie:organization_logo }},
+               "logo": "{{ config:app:url }}{{ glide:seogoldie:organization_logo width='336' height='336' fit='fill' }}"{{ /if }}
            }
-       {{ elseif seo:json_ld_type == 'person' }}
+       {{ elseif seogoldie:json_ld_type == 'person' }}
            {
                "@context": "http://schema.org",
                "@type": "Person",
                "url": "{{ config:app:url }}{{ homepage }}",
-               "name": "{{ seo:person_name }}"
+               "name": "{{ seogoldie:person_name }}"
            }
-       {{ elseif seo:json_ld_type == 'custom' }}
-           {{ seo:json_ld }}
+       {{ elseif seogoldie:json_ld_type == 'custom' }}
+           {{ seogoldie:json_ld }}
        {{ /if }}
    </script>
 {{ /if }}
@@ -101,7 +101,7 @@
 {{ /if }}
 
 {{# Breadcrumbs JSON-ld #}}
-{{ if seo:breadcrumbs && segment_1 }}
+{{ if seogoldie:breadcrumbs && segment_1 }}
    <script type="application/ld+json">
        {
            "@context": "https://schema.org",
@@ -121,7 +121,7 @@
 {{ /if }}
 
 {{# Open Graph #}}
-<meta property="og:site_name" content="{{ seo:site_name ? seo:site_name : config:app:name }}">
+<meta property="og:site_name" content="{{ seogoldie:site_name ? seogoldie:site_name : config:app:name }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="{{ site:locale }}">
 <meta property="og:url" content="{{ permalink }}">
@@ -134,27 +134,27 @@
     <meta property="og:description" content="{{ og_description | strip_tags | entities | trim }}">
 {{ elseif seo_description }}
     <meta property="og:description" content="{{ seo_description | strip_tags | entities | trim }}">
-{{ elseif seo:collection_defaults }}
+{{ elseif seogoldie:collection_defaults }}
     <meta property="og:description" content="{{ partial:statamic-vanilla-peak-seo::snippets/fallback_description }}">
 {{ /if }}
 {{ if og_image }}
     <meta property="og:image" content="{{ glide:og_image width='1200' height='630' fit='crop_focal' absolute="true" }}">
-{{ elseif seo:og_image }}
-    <meta property="og:image" content="{{ glide:seo:og_image width='1200' height='630' fit='crop_focal' absolute="true" }}">
+{{ elseif seogoldie:og_image }}
+    <meta property="og:image" content="{{ glide:seogoldie:og_image width='1200' height='630' fit='crop_focal' absolute="true" }}">
 {{ /if }}
 
 {{# Trackers #}}
 {{ if
-    (environment == 'local' && seo:trackers_local) or
-    (environment == 'staging' && seo:trackers_staging) or
-    (environment == 'production' && seo:trackers_production)
+    (environment == 'local' && seogoldie:trackers_local) or
+    (environment == 'staging' && seogoldie:trackers_staging) or
+    (environment == 'production' && seogoldie:trackers_production)
 }}
-    {{ if seo:tracker_type == 'gtm' || seo:tracker_type == 'gtag' }}
+    {{ if seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag' }}
         <script>
             window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
         </script>
     {{ /if }}
-    {{ if seo:use_consent_banner && (seo:tracker_type == 'gtm' || seo:tracker_type == 'gtag') }}
+    {{ if seogoldie:use_consent_banner && (seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag') }}
         <script>
             gtag('consent', 'default', {
                 'analytics_storage': 'denied',
@@ -166,13 +166,13 @@
         </script>
     {{ /if }}
 
-    {{ if seo:tracker_type == 'gtm' }}
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ seo:google_tag_manager }}')</script>
-    {{ elseif seo:tracker_type == 'gtag' }}
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ seo:google_analytics }}"></script>
-        <script>gtag('js', new Date());gtag('set', new Date());gtag('config', '{{ seo:google_analytics }}' {{ if seo:anonymize_ip }}, {'anonymize_ip': true}{{ /if }});</script>
-    {{ elseif seo:tracker_type == 'scripts' && !seo:use_consent_banner }}
-        {{ seo:scripts }}
+    {{ if seogoldie:tracker_type == 'gtm' }}
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ seogoldie:google_tag_manager }}')</script>
+    {{ elseif seogoldie:tracker_type == 'gtag' }}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ seogoldie:google_analytics }}"></script>
+        <script>gtag('js', new Date());gtag('set', new Date());gtag('config', '{{ seogoldie:google_analytics }}' {{ if seogoldie:anonymize_ip }}, {'anonymize_ip': true}{{ /if }});</script>
+    {{ elseif seogoldie:tracker_type == 'scripts' && !seogoldie:use_consent_banner }}
+        {{ seogoldie:scripts }}
             {{ script_fragments }}
                 {{ if type == 'script_tag' }}
                     <script {{ async ?= 'async' }} {{ defer ?= 'defer' }} src="{{ source }}" {{ script_attributes }}{{ attribute | slugify }}{{ attribute_value ?= '="{ attribute_value | entities }"' }}{{ !last ?= ' ' }}{{ /script_attributes }}></script>
@@ -180,36 +180,36 @@
                     <script {{ script_attributes }}{{ attribute | slugify }}{{ attribute_value ?= '="{ attribute_value | entities }"' }}{{ !last ?= ' ' }}{{ /script_attributes }}>{{ inline_script | remove_left('<script>') | remove_right('</script>') }}</script>
                 {{ /if }}
             {{ /script_fragments }}
-        {{ /seo:scripts }}
+        {{ /seogoldie:scripts }}
     {{ /if }}
 
     {{# Render this stack in all your layouts after opening the <body>. #}}
     {{ push:seo_body }}
-        {{ if seo:use_consent_banner }}
+        {{ if seogoldie:use_consent_banner }}
             {{ partial:statamic-vanilla-peak-seo::components/consent_banner }}
         {{ /if }}
     {{ /push:seo_body }}
 
-    {{ if seo:use_google_site_verification }}
-        <meta name="google-site-verification" content="{{ seo:google_site_verification }}" />
+    {{ if seogoldie:use_google_site_verification }}
+        <meta name="google-site-verification" content="{{ seogoldie:google_site_verification }}" />
     {{ /if }}
 
-    {{ if seo:use_fathom }}
-        <script src="https://cdn.usefathom.com/script.js" site="{{ seo:fathom }}" defer></script>
+    {{ if seogoldie:use_fathom }}
+        <script src="https://cdn.usefathom.com/script.js" site="{{ seogoldie:fathom }}" defer></script>
     {{ /if }}
 
-    {{ if seo:use_matomo }}
-        <script type="text/javascript">var _mtm = _mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src='{{ seo:matomo_script_url }}'; s.parentNode.insertBefore(g,s);</script>
+    {{ if seogoldie:use_matomo }}
+        <script type="text/javascript">var _mtm = _mtm || []; _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'}); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src='{{ seogoldie:matomo_script_url }}'; s.parentNode.insertBefore(g,s);</script>
     {{ /if }}
 
-    {{ if seo:use_plausible && seo:plausible_use_custom_script }}
-        <script src="{{ seo:plausible_custom_script_url }}" data-domain="{{ seo:plausible }}" defer></script>
-    {{ elseif seo:use_plausible }}
-        <script src="https://plausible.io/js/script.js" data-domain="{{ seo:plausible }}" defer></script>
+    {{ if seogoldie:use_plausible && seogoldie:plausible_use_custom_script }}
+        <script src="{{ seogoldie:plausible_custom_script_url }}" data-domain="{{ seogoldie:plausible }}" defer></script>
+    {{ elseif seogoldie:use_plausible }}
+        <script src="https://plausible.io/js/script.js" data-domain="{{ seogoldie:plausible }}" defer></script>
     {{ /if }}
 
-    {{ if seo:use_cloudflare_web_analytics }}
-        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ seo:cloudflare_web_analytics }}"}'></script>
+    {{ if seogoldie:use_cloudflare_web_analytics }}
+        <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ seogoldie:cloudflare_web_analytics }}"}'></script>
     {{ /if }}
 {{ /if }}
 <!-- End: statamic-vanilla-peak-seo::snippets/_seo.antlers.html -->

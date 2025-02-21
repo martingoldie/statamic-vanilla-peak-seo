@@ -16,7 +16,7 @@ class UpdateGlobalRenameWhatToAdd extends UpdateScript
     public function update()
     {
         Site::all()->each(function ($site) {
-            $set = GlobalSet::findByHandle('seo')->in($site->handle);
+            $set = GlobalSet::findByHandle('seogoldie')->in($site->handle);
             $changePageTitle = $set->get('change_page_title');
 
             if ($changePageTitle) {

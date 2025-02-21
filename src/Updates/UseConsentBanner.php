@@ -17,7 +17,7 @@ class UseConsentBanner extends UpdateScript
     public function update()
     {
         // Update global content.
-        $global = base_path("content/globals/seo.yaml");
+        $global = base_path("content/globals/seogoldie.yaml");
 
         if (File::exists($global)) {
             $contents = Str::of(File::get($global))
@@ -25,7 +25,7 @@ class UseConsentBanner extends UpdateScript
 
             File::put($global, $contents);
 
-            $this->console()->info('Renamed `use_cookie_banner` to `use_consent_banner` in `content/globals/seo.yaml`.');
+            $this->console()->info('Renamed `use_cookie_banner` to `use_consent_banner` in `content/globals/seogoldie.yaml`.');
         }
 
         // Update published SEO view.
@@ -33,13 +33,13 @@ class UseConsentBanner extends UpdateScript
 
         if (File::exists($view)) {
             $contents = Str::of(File::get($view))
-                ->replace('seo:use_cookie_banner', 'seo:use_consent_banner')
+                ->replace('seogoldie:use_cookie_banner', 'seogoldie:use_consent_banner')
                 ->replace('{{ partial:statamic-vanilla-peak-seo::components/cookie_banner }}', '{{ partial:statamic-vanilla-peak-seo::components/consent_banner }}')
                 ->replace('{{ trans:strings.cookie_', '{{ trans:strings.consent_');
 
             File::put($view, $contents);
 
-            $this->console()->info('Renamed `seo:use_cookie_banner` to `seo:use_consent_banner` and `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-vanilla-peak-seo/snippets/_seo.antlers.html`.');
+            $this->console()->info('Renamed `seogoldie:use_cookie_banner` to `seogoldie:use_consent_banner` and `{{ trans:strings.cookie_` to `{{ trans:strings.consent_` in `resources/views/vendor/statamic-vanilla-peak-seo/snippets/_seo.antlers.html`.');
         }
 
         // Update published cookie banner view.
@@ -49,7 +49,7 @@ class UseConsentBanner extends UpdateScript
             $contents = Str::of(File::get($view))
                 ->replace('section:reset_cookie_consent }}', 'section:reset_consent }}')
                 ->replace('section:reset_cookie_consent }}', 'section:reset_consent }}')
-                ->replace('seo:use_cookie_banner ', 'seo:use_consent_banner ')
+                ->replace('seogoldie:use_cookie_banner ', 'seogoldie:use_consent_banner ')
                 ->replace('{{ trans:strings.cookie_', '{{ trans:strings.consent_');
 
             File::put($view, $contents);
@@ -82,7 +82,7 @@ class UseConsentBanner extends UpdateScript
         $this->console()->info("Updated translation files.");
 
         // Update SEO global.
-        $view = base_path("resources/blueprints/globals/seo.yaml");
+        $view = base_path("resources/blueprints/globals/seogoldie.yaml");
 
         if (File::exists($view)) {
             $contents = Str::of(File::get($view))
@@ -92,7 +92,7 @@ class UseConsentBanner extends UpdateScript
 
             File::put($view, $contents);
 
-            $this->console()->info('Updated cookie strings to consent in `resources/blueprints/globals/seo.yaml`.');
+            $this->console()->info('Updated cookie strings to consent in `resources/blueprints/globals/seogoldie.yaml`.');
         }
 
         // Update video component.

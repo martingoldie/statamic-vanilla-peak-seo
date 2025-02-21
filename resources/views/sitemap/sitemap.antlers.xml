@@ -1,9 +1,9 @@
 {{ xml_header }}
-{{ unless seo:use_sitemap }}
+{{ unless seogoldie:use_sitemap }}
     {{ 404 }}
 {{ else }}
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" {{ yield:namespace }}>
-        {{ seo:sitemap_collections }}
+        {{ seogoldie:sitemap_collections }}
             {{ collection from="{handle}" seo_noindex:isnt="true" as="results" }}
                 {{ results where (x => x.permalink !== null) }}
                     {{ if permalink }}
@@ -26,8 +26,8 @@
                     {{ /if }}
                 {{ /results }}
             {{ /collection }}
-        {{ /seo:sitemap_collections }}
-        {{ seo:sitemap_taxonomies }}
+        {{ /seogoldie:sitemap_collections }}
+        {{ seogoldie:sitemap_taxonomies }}
             {{ taxonomy from="{handle}" seo_noindex:isnt="true" as="results" }}
                 {{ results where (x => x.permalink !== null) }}
                     <url>
@@ -38,8 +38,8 @@
                     </url>
                 {{ /results }}
             {{ /taxonomy }}
-        {{ /seo:sitemap_taxonomies }}
-        {{ seo:sitemap_collection_taxonomies }}
+        {{ /seogoldie:sitemap_taxonomies }}
+        {{ seogoldie:sitemap_collection_taxonomies }}
             {{ collections }}
                 {{ taxonomy from="{taxonomy}" collection="{handle}" seo_noindex:isnt="true" as="results" }}
                     {{ results }}
@@ -52,6 +52,6 @@
                     {{ /results }}
                 {{ /taxonomy }}
             {{ /collections }}
-        {{ /seo:sitemap_collection_taxonomies }}
+        {{ /seogoldie:sitemap_collection_taxonomies }}
     </urlset>
 {{ /unless }}

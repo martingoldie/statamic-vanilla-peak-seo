@@ -5,10 +5,10 @@
 
 <script>
     let consentData = {
-        "consent": {{ (seo:tracker_type == 'none' && seo:hide_by_default) | bool_string }},
+        "consent": {{ (seogoldie:tracker_type == 'none' && seogoldie:hide_by_default) | bool_string }},
         "date": null,
-        "consent_api": {{ (seo:tracker_type == 'gtag' || seo:tracker_type == 'gtm') | bool_string }},
-        "custom_scripts": {{ (seo:tracker_type == 'scripts') | bool_string }},
+        "consent_api": {{ (seogoldie:tracker_type == 'gtag' || seogoldie:tracker_type == 'gtm') | bool_string }},
+        "custom_scripts": {{ (seogoldie:tracker_type == 'scripts') | bool_string }},
         "types": [
             {
                 "value": true,
@@ -17,7 +17,7 @@
                 "explanation": "{{ trans:strings.consent_functional_explanation }}",
                 "disabled": true
             },
-            {{ if seo:tracker_type == 'gtag' || seo:tracker_type == 'gtm' }}
+            {{ if seogoldie:tracker_type == 'gtag' || seogoldie:tracker_type == 'gtm' }}
                 {
                     "value": false,
                     "handle": "analyticsStorage",
@@ -27,13 +27,13 @@
                     "consent_api_handle": "analytics_storage",
                     "services": [
                         "Google Analytics",
-                        {{ seo:analytics_services }}
+                        {{ seogoldie:analytics_services }}
                             "{{ value }}",
-                        {{ /seo:analytics_services }}
+                        {{ /seogoldie:analytics_services }}
                     ]
                 },
             {{ /if }}
-            {{ if seo:tracker_type == 'gtm' }}
+            {{ if seogoldie:tracker_type == 'gtm' }}
                 {
                     "value": false,
                     "handle": "adStorage",
@@ -43,9 +43,9 @@
                     "consent_api_handle": "ad_storage",
                     "services": [
                         "Google Tag Manager",
-                        {{ seo:ad_storage_services }}
+                        {{ seogoldie:ad_storage_services }}
                             "{{ value }}",
-                        {{ /seo:ad_storage_services }}
+                        {{ /seogoldie:ad_storage_services }}
                     ]
                 },
                 {
@@ -57,9 +57,9 @@
                     "consent_api_handle": "ad_user_data",
                     "services": [
                         "Google Tag Manager",
-                        {{ seo:ad_user_data_services }}
+                        {{ seogoldie:ad_user_data_services }}
                             "{{ value }}",
-                        {{ /seo:ad_user_data_services }}
+                        {{ /seogoldie:ad_user_data_services }}
                     ]
                 },
                 {
@@ -71,14 +71,14 @@
                     "consent_api_handle": "ad_personalization",
                     "services": [
                         "Google Tag Manager",
-                        {{ seo:ad_personalization_services }}
+                        {{ seogoldie:ad_personalization_services }}
                             "{{ value }}",
-                        {{ /seo:ad_personalization_services }}
+                        {{ /seogoldie:ad_personalization_services }}
                     ]
                 },
             {{ /if }}
-            {{ if seo:tracker_type == 'scripts' }}
-                {{ seo:scripts }}
+            {{ if seogoldie:tracker_type == 'scripts' }}
+                {{ seogoldie:scripts }}
                     {{ scope:scripts }}
                         {
                             "value": false,
@@ -114,19 +114,19 @@
                             ]
                         },
                     {{ /scope:scripts }}
-                {{ /seo:scripts }}
+                {{ /seogoldie:scripts }}
             {{ /if }}
-            {{ if seo:embeds }}
+            {{ if seogoldie:embeds }}
                 {
                     "value": false,
                     "handle": "embeds",
                     "title": "{{ trans:strings.consent_embeds }}",
                     "explanation": "{{ trans:strings.consent_embeds_explanation }}",
-                    {{ if seo:embed_services }}
+                    {{ if seogoldie:embed_services }}
                         "services": [
-                            {{ seo:embed_services }}
+                            {{ seogoldie:embed_services }}
                                 "{{ value }}",
-                            {{ /seo:embed_services }}
+                            {{ /seogoldie:embed_services }}
                         ],
                     {{ /if }}
                 },

@@ -71,7 +71,7 @@ class GenerateSocialImagesJob implements ShouldBeUnique, ShouldQueue {
         $id = $this->item->id();
         $absolute_url = $this->item->site()->absoluteUrl();
 
-        if (GlobalSet::findByHandle('seo')->inDefaultSite()->get('use_no_sandbox_for_social_image_generation')) {
+        if (GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('use_no_sandbox_for_social_image_generation')) {
             $browsershot = Browsershot::url("{$absolute_url}/social-images/{$id}")->noSandbox();
         } else
             $browsershot = Browsershot::url("{$absolute_url}/social-images/{$id}");

@@ -12,8 +12,8 @@ class GenerateSocialImages extends Action
     public $available_collections = array();
 
     public function __construct() {
-        if (GlobalSet::findByHandle('seo')->inDefaultSite()->get('use_social_image_generation') && GlobalSet::findByHandle('seo')->inDefaultSite()->get('social_images_collections')) {
-            $this->available_collections = GlobalSet::findByHandle('seo')->inDefaultSite()->get('social_images_collections');
+        if (GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('use_social_image_generation') && GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('social_images_collections')) {
+            $this->available_collections = GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('social_images_collections');
         }
     }
 

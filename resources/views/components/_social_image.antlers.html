@@ -12,7 +12,7 @@
         <p class="text-xl text-neutral leading-loose max-w-[40ch]">
             {{ if og_description || seo_description }}
                  {{ og_description ?? seo_description }}
-            {{ elseif seo:collection_defaults }}
+            {{ elseif seogoldie:collection_defaults }}
                  {{ partial:statamic-vanilla-peak-seo::snippets/fallback_description }}
             {{ /if }}
         </p>

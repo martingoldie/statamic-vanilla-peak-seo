@@ -1,5 +1,5 @@
 {{ xml_header }}
-{{ unless seo:use_sitemap }}
+{{ unless seogoldie:use_sitemap }}
     {{ 404 }}
 {{ else }}
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
