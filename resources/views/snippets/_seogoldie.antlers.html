@@ -151,16 +151,7 @@
 }}
     {{ if seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag' }}
         <script>
-            window.dataLayer = window.dataLayer || [];
-            // window.dataLayer.push({
-            //     'event': 'registrationComplete'
-            // });
-            console.log('arguments');
-            console.log(arguments);
-            console.log('end');
-            function gtag(){
-                dataLayer.push(arguments);
-            }
+            window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
         </script>
     {{ /if }}
     {{ if seogoldie:use_consent_banner && (seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag') }}
