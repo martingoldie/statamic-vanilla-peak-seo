@@ -77,7 +77,7 @@
    <script type="application/ld+json" id="schema">
        {{ if seogoldie:json_ld_type == 'organization'  }}
            {
-               "@context": "http://schema.org",
+               "@context": "https://schema.org",
                "@type": "Organization",
                "name": "{{ seogoldie:organization_name }}",
                "url": "{{ site:permalink }}"{{ if seogoldie:organization_logo }},
@@ -85,7 +85,7 @@
            }
        {{ elseif seogoldie:json_ld_type == 'person' }}
            {
-               "@context": "http://schema.org",
+               "@context": "https://schema.org",
                "@type": "Person",
                "url": "{{ site:permalink }}",
                "name": "{{ seogoldie:person_name }}"
@@ -151,7 +151,16 @@
 }}
     {{ if seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag' }}
         <script>
-            window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+            window.dataLayer = window.dataLayer || [];
+            // window.dataLayer.push({
+            //     'event': 'registrationComplete'
+            // });
+            console.log('arguments');
+            console.log(arguments);
+            console.log('end');
+            function gtag(){
+                dataLayer.push(arguments);
+            }
         </script>
     {{ /if }}
     {{ if seogoldie:use_consent_banner && (seogoldie:tracker_type == 'gtm' || seogoldie:tracker_type == 'gtag') }}
