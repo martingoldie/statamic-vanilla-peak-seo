@@ -10,6 +10,7 @@ use Goldie\PeakSeo\Jobs\GenerateSocialImagesJob;
 class GenerateSocialImages extends Action
 {
     public $available_collections = array();
+    public $icon = 'share-mega-phone';
 
     public function __construct() {
         if (GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('use_social_image_generation') && GlobalSet::findByHandle('seogoldie')->inDefaultSite()->get('social_images_collections')) {
